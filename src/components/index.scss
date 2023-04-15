@@ -1,0 +1,73 @@
+@mixin border-bottom{
+    border-bottom: thin solid black;
+}
+
+@mixin border-top{
+    border-top: thin solid black;
+}
+
+@mixin border-left{
+    border-left: thin solid black;
+}
+
+@mixin border-right{
+    border-right: thin solid black;
+}
+
+@mixin border-top-and-bottom{
+    @include border-top();
+    @include border-bottom();
+}
+
+@mixin border-left-and-right{
+    @include border-left();
+    @include border-right();
+}
+
+.board-wrapper{
+    width: 80%;
+    margin: 0 auto;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-board{
+
+    width: 500px;
+    height: 500px;
+
+    display: grid;
+    grid-template: repeat(3,1fr) / repeat(3,1fr);
+
+    div{
+        font-size: 40px;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    & > :nth-child(2){
+        @include border-left-and-right();
+        @include border-bottom();
+    }
+
+    & > :nth-child(8){
+        @include border-left-and-right();
+        @include border-top();
+    }
+
+    & > :nth-child(4){
+        @include border-top-and-bottom();
+        @include border-right();
+    }
+
+    & > :nth-child(6){
+        @include border-top-and-bottom();
+        @include border-left();
+    }
+
+}
